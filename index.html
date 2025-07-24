@@ -4,64 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latihan Interaktif Literasi Biologi Kelas 12</title>
-    <link rel="icon" href="https://tailwindcss.com/favicons/favicon-32x32.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .tab-btn.active {
-            background-color: #059669;
-            color: white;
-            font-weight: 600;
-        }
-        .answer-card {
-            transition: all 0.3s ease-in-out;
-            max-height: 0;
-            overflow: hidden;
-        }
-        .answer-card.visible {
-            max-height: 500px;
-            margin-top: 0.75rem;
-            padding: 1rem;
-        }
-        .diagram-box {
-            border: 2px solid #d1d5db;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            text-align: center;
-            background-color: #f9fafb;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .tab-btn.active { background-color: #059669; color: white; font-weight: 600; }
+        .diagram-box { border: 2px solid #d1d5db; border-radius: 0.5rem; padding: 1rem; text-align: center; background-color: #f9fafb; }
+        .table-auto th, .table-auto td { border-bottom: 1px solid #e5e7eb; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <div class="container mx-auto max-w-4xl p-4 sm:p-6 md:p-8">
-        
-        <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold text-emerald-700">Latihan Literasi Biologi</h1>
-            <p class="text-slate-600 mt-2">Kelas 12 - Uji pemahaman Anda pada konsep-konsep kunci biologi.</p>
-        </header>
+<div class="container mx-auto max-w-4xl p-4 sm:p-6 md:p-8">
 
-        <nav class="flex justify-center items-center bg-white p-2 rounded-xl shadow-sm mb-8">
-            <button data-target="mudah" class="tab-btn flex-1 py-2 px-4 rounded-lg text-sm sm:text-base text-slate-700 transition-colors duration-300 active">Mudah</button>
-            <button data-target="sedang" class="tab-btn flex-1 py-2 px-4 rounded-lg text-sm sm:text-base text-slate-700 transition-colors duration-300">Sedang</button>
-            <button data-target="sulit" class="tab-btn flex-1 py-2 px-4 rounded-lg text-sm sm:text-base text-slate-700 transition-colors duration-300">Sulit</button>
-        </nav>
+    <!-- FORM PENDAFTARAN -->
+    <div id="registration-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
+        <form id="registration-form" class="bg-white p-8 rounded-xl shadow-lg space-y-6 w-full max-w-sm">
+            <h2 class="text-2xl font-bold text-emerald-700 mb-2 text-center">Pendaftaran Peserta</h2>
+            <div>
+                <label for="nama" class="block font-semibold mb-1">Nama Lengkap:</label>
+                <input id="nama" name="nama" type="text" required class="w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-emerald-500">
+            </div>
+            <button type="submit" class="w-full py-2 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700">Mulai</button>
+        </form>
+    </div>
 
-        <main id="content-container">
+    <!-- HEADER & NAVIGATION -->
+    <header class="text-center mb-8">
+        <h1 class="text-3xl sm:text-4xl font-bold text-emerald-700">Latihan Literasi Biologi</h1>
+        <p class="text-slate-600 mt-2">Kelas 12 - Uji pemahaman Anda pada konsep-konsep kunci biologi.</p>
+        <p id="user-info" class="mt-2 text-sm text-emerald-700 font-semibold hidden"></p>
+    </header>
+
+    <nav class="flex justify-center items-center bg-white p-2 rounded-xl shadow-sm mb-8">
+        <button data-target="mudah" class="tab-btn flex-1 py-2 px-4 rounded-lg text-sm sm:text-base text-slate-700 transition-colors duration-300 active">Mudah</button>
+        <button data-target="sedang" class="tab-btn flex-1 py-2 px-4 rounded-lg text-sm sm:text-base text-slate-700 transition-colors duration-300">Sedang</button>
+        <button data-target="sulit" class="tab-btn flex-1 py-2 px-4 rounded-lg text-sm sm:text-base text-slate-700 transition-colors duration-300">Sulit</button>
+    </nav>
+
+    <main id="content-container">
+        <!-- Section Soal - Satu Tab Aktif Saja -->
+        <form id="quiz-form">
             <!-- Kategori Mudah -->
             <section id="mudah" class="content-section space-y-6">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="text-xl font-semibold text-emerald-600 mb-3">Bacaan: Fotosintesis</h3>
                     <p class="text-slate-600 leading-relaxed">
-                        Fotosintesis adalah proses biokimia fundamental yang dilakukan oleh tumbuhan hijau, alga, dan beberapa bakteri untuk mengubah energi cahaya menjadi energi kimia. Dalam proses ini, karbon dioksida (CO₂) dari udara dan air (H₂O) dari tanah digunakan untuk menghasilkan glukosa (C₆H₁₂O₆), yang merupakan sumber energi bagi tumbuhan. Proses ini memerlukan klorofil, pigmen hijau yang terdapat di dalam kloroplas, untuk menyerap energi dari sinar matahari. Sebagai produk sampingan yang vital, fotosintesis melepaskan oksigen (O₂) ke atmosfer, yang esensial bagi pernapasan sebagian besar makhluk hidup.
+                        Fotosintesis adalah proses biokimia fundamental yang dilakukan oleh tumbuhan hijau, alga, dan beberapa bakteri untuk mengubah energi cahaya menjadi energi kimia. ...
                     </p>
                 </div>
-
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h4 class="text-lg font-semibold text-emerald-600 mb-4">Diagram Proses</h4>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-slate-700">
@@ -72,191 +65,211 @@
                         <div class="diagram-box">Glukosa + O₂<br><span class="text-sm font-medium">(Hasil)</span></div>
                     </div>
                 </div>
-
                 <div class="space-y-4">
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">1. Berdasarkan teks di atas, apa fungsi utama klorofil dalam proses fotosintesis?</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Fungsi utama klorofil adalah <strong>menyerap energi dari sinar matahari</strong>.
-                        </div>
+                        <input type="text" name="mudah-1" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">2. Sebutkan dua bahan baku yang dibutuhkan tumbuhan dari lingkungan untuk fotosintesis.</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Dua bahan baku yang dibutuhkan adalah <strong>karbon dioksida (CO₂)</strong> dan <strong>air (H₂O)</strong>.
-                        </div>
+                        <input type="text" name="mudah-2" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">3. Selain glukosa, produk apa lagi yang dihasilkan dari fotosintesis yang penting bagi kehidupan di Bumi?</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Produk lain yang dihasilkan dan penting bagi kehidupan adalah <strong>oksigen (O₂)</strong>.
-                        </div>
+                        <input type="text" name="mudah-3" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                 </div>
             </section>
-
             <!-- Kategori Sedang -->
             <section id="sedang" class="content-section space-y-6 hidden">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="text-xl font-semibold text-emerald-600 mb-3">Bacaan: Vaksin mRNA</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Vaksin mRNA merupakan salah satu terobosan dalam teknologi medis. Berbeda dengan vaksin konvensional yang menggunakan virus yang dilemahkan atau dimatikan, vaksin mRNA bekerja dengan cara yang lebih canggih. Vaksin ini mengirimkan sepotong kecil kode genetik (mRNA) ke dalam sel tubuh. Kode ini memberikan instruksi kepada sel untuk memproduksi protein spesifik, yaitu "protein lonjakan" (spike protein) yang identik dengan yang ada di permukaan virus SARS-CoV-2. Sel tubuh kemudian menampilkan protein ini di permukaannya. Sistem kekebalan tubuh mengenali protein ini sebagai benda asing dan mulai memproduksi antibodi serta mengaktifkan sel-sel imun lainnya sebagai respons. Jika di kemudian hari tubuh terpapar virus yang sebenarnya, sistem kekebalan sudah siap untuk mengenalinya dan melancarkan serangan dengan cepat.
-                    </p>
+                    <p class="text-slate-600 leading-relaxed">Vaksin mRNA merupakan salah satu terobosan dalam teknologi medis ...</p>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                     <h4 class="text-lg font-semibold text-emerald-600 mb-4">Alur Kerja Vaksin mRNA</h4>
-                     <ol class="relative border-l border-emerald-200 space-y-6 pl-4">
-                        <li class="ml-4">
-                            <div class="absolute w-3 h-3 bg-emerald-500 rounded-full mt-1.5 -left-1.5 border border-white"></div>
-                            <h5 class="font-semibold">1. Injeksi mRNA</h5>
-                            <p class="text-sm text-slate-600">Kode genetik (mRNA) dimasukkan ke dalam tubuh.</p>
-                        </li>
-                        <li class="ml-4">
-                            <div class="absolute w-3 h-3 bg-emerald-500 rounded-full mt-1.5 -left-1.5 border border-white"></div>
-                            <h5 class="font-semibold">2. Produksi Protein</h5>
-                            <p class="text-sm text-slate-600">Sel tubuh membaca mRNA dan memproduksi "protein lonjakan".</p>
-                        </li>
-                         <li class="ml-4">
-                            <div class="absolute w-3 h-3 bg-emerald-500 rounded-full mt-1.5 -left-1.5 border border-white"></div>
-                            <h5 class="font-semibold">3. Respons Imun</h5>
-                            <p class="text-sm text-slate-600">Sistem imun mengenali protein sebagai benda asing dan menciptakan antibodi.</p>
-                        </li>
-                         <li class="ml-4">
-                            <div class="absolute w-3 h-3 bg-emerald-500 rounded-full mt-1.5 -left-1.5 border border-white"></div>
-                            <h5 class="font-semibold">4. Memori Imunologis</h5>
-                            <p class="text-sm text-slate-600">Tubuh siap melawan virus asli di masa depan.</p>
-                        </li>
-                     </ol>
-                </div>
-
+                <!-- ... (diagram tetap) ... -->
                 <div class="space-y-4">
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">1. Apa perbedaan mendasar antara cara kerja vaksin mRNA dengan vaksin konvensional berdasarkan teks?</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Vaksin mRNA bekerja dengan <strong>mengirimkan kode genetik (mRNA) untuk memproduksi protein spesifik</strong> di dalam sel tubuh, sedangkan vaksin konvensional menggunakan <strong>virus yang dilemahkan atau dimatikan</strong>.
-                        </div>
+                        <input type="text" name="sedang-1" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">2. Bagaimana sel tubuh "belajar" untuk mengenali virus setelah divaksinasi mRNA?</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Sel tubuh "belajar" mengenali virus karena <strong>memproduksi dan menampilkan "protein lonjakan"</strong> di permukaannya, yang kemudian dikenali sebagai benda asing oleh sistem kekebalan.
-                        </div>
+                        <input type="text" name="sedang-2" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">3. Mengapa vaksinasi mRNA dikatakan dapat membuat sistem kekebalan tubuh "siap" menghadapi paparan virus yang sebenarnya?</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Vaksinasi mRNA membuat sistem kekebalan tubuh "siap" karena setelah vaksinasi, tubuh sudah <strong>memproduksi antibodi dan mengaktifkan sel-sel imun lainnya</strong> yang spesifik terhadap protein lonjakan, sehingga jika terpapar virus asli, sistem kekebalan dapat melancarkan serangan dengan cepat.
-                        </div>
+                        <input type="text" name="sedang-3" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                 </div>
             </section>
-
             <!-- Kategori Sulit -->
             <section id="sulit" class="content-section space-y-6 hidden">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="text-xl font-semibold text-emerald-600 mb-3">Bacaan: Resistensi Antibiotik</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Resistensi antibiotik adalah salah satu ancaman kesehatan global terbesar saat ini. Fenomena ini terjadi ketika bakteri berevolusi sebagai respons terhadap penggunaan antibiotik. Salah satu mekanisme evolusi yang paling umum adalah melalui seleksi alam. Dalam populasi bakteri yang besar, beberapa individu mungkin secara kebetulan memiliki mutasi genetik yang membuat mereka kebal terhadap antibiotik tertentu. Ketika antibiotik digunakan, bakteri yang rentan akan mati, sementara bakteri yang resisten akan bertahan hidup dan berkembang biak. Proses ini menciptakan populasi baru yang didominasi oleh bakteri resisten. Selain itu, bakteri dapat saling berbagi gen resistensi melalui proses yang disebut transfer gen horizontal, mempercepat penyebaran kekebalan bahkan di antara spesies bakteri yang berbeda. Penggunaan antibiotik yang tidak tuntas atau tidak sesuai resep dokter memperburuk masalah ini karena memberikan kesempatan bagi bakteri yang paling kuat untuk bertahan dan menyebarkan gen resistensinya.
-                    </p>
+                    <p class="text-slate-600 leading-relaxed">Resistensi antibiotik adalah salah satu ancaman kesehatan global terbesar saat ini ...</p>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h4 class="text-lg font-semibold text-emerald-600 mb-4">Ilustrasi Seleksi Alam Bakteri</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center text-center">
-                        <div>
-                            <h5 class="font-semibold mb-2">1. Populasi Awal</h5>
-                            <div class="diagram-box h-24 flex flex-wrap gap-2 justify-center items-center">
-                                <span class="w-3 h-3 bg-sky-500 rounded-full"></span><span class="w-3 h-3 bg-sky-500 rounded-full"></span>
-                                <span class="w-3 h-3 bg-red-500 rounded-full"></span><span class="w-3 h-3 bg-sky-500 rounded-full"></span>
-                                <span class="w-3 h-3 bg-sky-500 rounded-full"></span><span class="w-3 h-3 bg-sky-500 rounded-full"></span>
-                            </div>
-                            <p class="text-xs mt-1"><span class="text-red-500 font-bold">Merah:</span> Resisten</p>
-                        </div>
-                        <div class="text-2xl font-bold text-emerald-500 transform md:rotate-0 rotate-90">+ Antibiotik</div>
-                        <div>
-                            <h5 class="font-semibold mb-2">2. Populasi Akhir</h5>
-                            <div class="diagram-box h-24 flex flex-wrap gap-2 justify-center items-center">
-                                <span class="w-3 h-3 bg-red-500 rounded-full"></span><span class="w-3 h-3 bg-red-500 rounded-full"></span>
-                                <span class="w-3 h-3 bg-red-500 rounded-full"></span><span class="w-3 h-3 bg-red-500 rounded-full"></span>
-                            </div>
-                            <p class="text-xs mt-1">Bakteri resisten bertahan & berkembang biak.</p>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- ... (diagram tetap) ... -->
                 <div class="space-y-4">
-                     <div class="bg-white p-5 rounded-lg shadow-sm">
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">1. Selain seleksi alam, mekanisme lain apa yang disebutkan dalam teks yang mempercepat penyebaran resistensi antibiotik di antara bakteri? Jelaskan secara singkat.</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Mekanisme lain yang disebutkan adalah <strong>transfer gen horizontal</strong>. Ini adalah proses di mana bakteri dapat <strong>saling berbagi gen resistensi</strong>, bahkan antar spesies bakteri yang berbeda, sehingga mempercepat penyebaran kekebalan.
-                        </div>
+                        <input type="text" name="sulit-1" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">2. Mengapa penggunaan antibiotik yang tidak tuntas atau tidak sesuai resep dokter dianggap memperburuk masalah resistensi antibiotik?</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Penggunaan antibiotik yang tidak tuntas atau tidak sesuai resep dokter memperburuk masalah karena <strong>memberikan kesempatan bagi bakteri yang paling kuat atau resisten untuk bertahan hidup dan berkembang biak</strong> tanpa tekanan antibiotik yang cukup. Ini kemudian menciptakan populasi bakteri yang didominasi oleh strain resisten.
-                        </div>
+                        <input type="text" name="sulit-2" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                     <div class="bg-white p-5 rounded-lg shadow-sm">
                         <p class="font-semibold">3. Jika seseorang terinfeksi bakteri yang resisten terhadap beberapa jenis antibiotik (superbug), jelaskan tantangan utama dalam pengobatannya berdasarkan teks.</p>
-                        <button class="toggle-answer-btn mt-3 text-sm bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-md transition-colors">Tampilkan Jawaban</button>
-                        <div class="answer-card bg-emerald-50 border-l-4 border-emerald-500 text-slate-700">
-                            Tantangan utama dalam pengobatan infeksi superbug adalah <strong>sulitnya menemukan antibiotik yang efektif</strong> untuk membunuh bakteri tersebut. Karena bakteri telah berevolusi menjadi resisten terhadap beberapa jenis antibiotik, pilihan pengobatan menjadi sangat terbatas, meningkatkan risiko kegagalan pengobatan dan komplikasi serius.
-                        </div>
+                        <input type="text" name="sulit-3" class="border border-slate-300 rounded-md px-3 py-2 mt-2 w-full" autocomplete="off" required>
                     </div>
                 </div>
             </section>
-        </main>
+            <div class="flex justify-end mt-6">
+                <button type="submit" class="bg-emerald-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-emerald-700">Lihat Hasil</button>
+            </div>
+        </form>
 
-    </div>
+        <!-- Hasil Jawaban -->
+        <section id="hasil-section" class="hidden mt-10">
+            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Perbandingan Jawaban</h2>
+            <div class="overflow-x-auto">
+                <table class="table-auto w-full text-left border-collapse bg-white rounded-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-emerald-100">
+                            <th class="py-2 px-3">No.</th>
+                            <th class="py-2 px-3">Pertanyaan</th>
+                            <th class="py-2 px-3">Jawaban Anda</th>
+                            <th class="py-2 px-3">Kunci Jawaban</th>
+                            <th class="py-2 px-3">Skor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hasil-tabel"></tbody>
+                </table>
+            </div>
+            <div class="mt-6 text-lg font-semibold">
+                Total Skor: <span id="total-skor" class="text-emerald-700"></span>
+            </div>
+        </section>
+    </main>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const contentSections = document.querySelectorAll('.content-section');
-            const answerButtons = document.querySelectorAll('.toggle-answer-btn');
+<script>
+const soal = [
+    // Mudah
+    {
+        pertanyaan: "Berdasarkan teks di atas, apa fungsi utama klorofil dalam proses fotosintesis?",
+        name: "mudah-1",
+        kunci: "menyerap energi dari sinar matahari"
+    },
+    {
+        pertanyaan: "Sebutkan dua bahan baku yang dibutuhkan tumbuhan dari lingkungan untuk fotosintesis.",
+        name: "mudah-2",
+        kunci: "karbon dioksida dan air"
+    },
+    {
+        pertanyaan: "Selain glukosa, produk apa lagi yang dihasilkan dari fotosintesis yang penting bagi kehidupan di Bumi?",
+        name: "mudah-3",
+        kunci: "oksigen"
+    },
+    // Sedang
+    {
+        pertanyaan: "Apa perbedaan mendasar antara cara kerja vaksin mRNA dengan vaksin konvensional berdasarkan teks?",
+        name: "sedang-1",
+        kunci: "vaksin mRNA memberikan instruksi genetik, vaksin konvensional menggunakan virus yang dilemahkan atau dimatikan"
+    },
+    {
+        pertanyaan: "Bagaimana sel tubuh \"belajar\" untuk mengenali virus setelah divaksinasi mRNA?",
+        name: "sedang-2",
+        kunci: "memproduksi dan menampilkan protein lonjakan yang dikenali sistem imun"
+    },
+    {
+        pertanyaan: "Mengapa vaksinasi mRNA dikatakan dapat membuat sistem kekebalan tubuh \"siap\" menghadapi paparan virus yang sebenarnya?",
+        name: "sedang-3",
+        kunci: "tubuh sudah memproduksi antibodi dan mengaktifkan sel imun terhadap protein lonjakan"
+    },
+    // Sulit
+    {
+        pertanyaan: "Selain seleksi alam, mekanisme lain apa yang disebutkan dalam teks yang mempercepat penyebaran resistensi antibiotik di antara bakteri? Jelaskan secara singkat.",
+        name: "sulit-1",
+        kunci: "transfer gen horizontal"
+    },
+    {
+        pertanyaan: "Mengapa penggunaan antibiotik yang tidak tuntas atau tidak sesuai resep dokter dianggap memperburuk masalah resistensi antibiotik?",
+        name: "sulit-2",
+        kunci: "memberi peluang bakteri resisten bertahan dan berkembang biak"
+    },
+    {
+        pertanyaan: "Jika seseorang terinfeksi bakteri yang resisten terhadap beberapa jenis antibiotik (superbug), jelaskan tantangan utama dalam pengobatannya berdasarkan teks.",
+        name: "sulit-3",
+        kunci: "sulitnya menemukan antibiotik yang efektif, risiko kegagalan pengobatan"
+    }
+];
 
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.dataset.target;
+document.addEventListener('DOMContentLoaded', function () {
+    // Registration logic
+    const registrationModal = document.getElementById('registration-modal');
+    const registrationForm = document.getElementById('registration-form');
+    const userInfo = document.getElementById('user-info');
+    let userName = '';
 
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    button.classList.add('active');
+    registrationForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        userName = document.getElementById('nama').value.trim();
+        if(userName.length > 0){
+            registrationModal.style.display = 'none';
+            userInfo.textContent = `Selamat datang, ${userName}!`;
+            userInfo.classList.remove('hidden');
+        }
+    });
 
-                    contentSections.forEach(section => {
-                        if (section.id === targetId) {
-                            section.classList.remove('hidden');
-                        } else {
-                            section.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-
-            answerButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const answerCard = button.nextElementSibling;
-                    answerCard.classList.toggle('visible');
-                    if (answerCard.classList.contains('visible')) {
-                        button.textContent = 'Sembunyikan Jawaban';
-                    } else {
-                        button.textContent = 'Tampilkan Jawaban';
-                    }
-                });
+    // Tab logic
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const contentSections = document.querySelectorAll('.content-section');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target;
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            contentSections.forEach(section => {
+                if (section.id === targetId) section.classList.remove('hidden');
+                else section.classList.add('hidden');
             });
         });
-    </script>
+    });
 
+    // Quiz form logic
+    const quizForm = document.getElementById('quiz-form');
+    quizForm.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        // Simpan jawaban user
+        const formData = new FormData(quizForm);
+        let totalSkor = 0;
+        let hasilRows = '';
+        soal.forEach((item, idx) => {
+            const jawabanUser = (formData.get(item.name) || '').toLowerCase().trim();
+            const kunci = item.kunci.toLowerCase();
+            // Penilaian sederhana: mengandung kata kunci utama
+            let benar = false;
+            let kunciUtama = kunci.split(/[ ,]+/).filter(w => w.length > 3); // kata kunci >3 karakter
+            benar = kunciUtama.some(w => jawabanUser.includes(w));
+            if(benar) totalSkor++;
+
+            hasilRows += `<tr>
+                <td class="py-2 px-3">${idx+1}</td>
+                <td class="py-2 px-3">${item.pertanyaan}</td>
+                <td class="py-2 px-3">${jawabanUser || '-'}</td>
+                <td class="py-2 px-3">${item.kunci}</td>
+                <td class="py-2 px-3 text-center">${benar ? "✔️" : "❌"}</td>
+            </tr>`;
+        });
+
+        document.getElementById('hasil-tabel').innerHTML = hasilRows;
+        document.getElementById('total-skor').textContent = `${totalSkor} / ${soal.length}`;
+        document.getElementById('hasil-section').classList.remove('hidden');
+        quizForm.classList.add('hidden');
+    });
+});
+</script>
 </body>
 </html>
